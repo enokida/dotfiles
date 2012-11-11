@@ -1,4 +1,8 @@
-
+""=============================================================================
+" NeoBundleでplugin管理設定
+"==============================================================================
+"
+"
 set nocompatible
 filetype off
 filetype plugin indent off
@@ -42,7 +46,7 @@ endif
  NeoBundle 'YankRing.vim'
  " non github repos
  NeoBundle 'git://git.wincent.com/command-t.git'
- 
+
  filetype plugin on
  filetype indent on     " required! 
 
@@ -56,7 +60,7 @@ endif
  "" let Vundle manage Vundle
  " required! 
  " Bundle 'gmarik/vundle'
- 
+
  " Brief help
  " :BundleList          - list configured bundles
  " :BundleInstall(!)    - install(update) bundles
@@ -65,49 +69,78 @@ endif
  "
  " see :h vundle for more details or wiki for FAQ
  " NOTE: comments after Bundle command are not allowed..
- 
 
+
+
+"=============================================================================
+" 基本設定
+"=============================================================================
+"
 "新規htmlファイル作成時テンプレートを読み込む
-autocmd BufNewFile *.html 0r ~\vimfiles\templates\skel.html
+autocmd BufNewFile *.html 0r ~/.vim/templates/skel.html
 
 "新しい行のインデントを現在行と同じにする
 set autoindent
+
 "バックアップファイルを作るディレクトリ
-"set backupdir=~\vim\vimbackup
+set backupdir=~/.vim/vimbackup
+"
 "ファイル保存ダイアログの初期ディレクトリをバッファファイル位置に設定
 set browsedir=buffer
+
 "クリップボードをWindowsと連携
 set clipboard=unnamed
+
 "Vi互換をオフ
 set nocompatible
+
 "スワップファイル用のディレクトリ
-"set directory=~\vim\vimbackup
+set directory=~/.vim/vimbackup
+"
 "タブの代わりに空白文字を挿入する
 set expandtab
+
 "変更中のファイルでも、保存しないで他のファイルを表示
 set hidden
+
 "インクリメンタルサーチを行う
 set incsearch
+
 "行番号を表示する
 set number
+
 " コマンド入力欄の高さを3行分に設定
 set cmdheight=3
+
 " 常にステータスラインを表示
 set laststatus=2
+
 "シフト移動幅
 "set shiftwidth=4
+"
 "閉じ括弧が入力されたとき、対応する括弧を表示する
 set showmatch
+
 "新しい行を作ったときに高度な自動インデントを行う
 set smartindent
+
 "行頭の余白内で Tab を打ち込むと、'shiftwidth' の数だけインデントする。
 set smarttab
+
 "ファイル内の <Tab> が対応する空白の数
 set tabstop=4
+
 "カーソルを行頭、行末で止まらないようにする
 set whichwrap=b,s,h,l,<,>,[,]
+
 "検索をファイルの先頭へループしない
 set wrapscan
+
+"split時の移動キーマッピング
+map <C-j> <C-W>j<C-w>_
+map <C-k> <C-W>k<C-w>_
+map <C-h> <C-w>h<C-w>_
+map <C-l> <C-w>l<C-w>_
 
 "入力モード時、ステータスラインのカラーを変更
 augroup InsertHook
@@ -123,6 +156,7 @@ set statusline=%{g:HahHah()}\ %f\ %m%r%h%w[%Y][%{&fenc}][%{&ff}]%=%c,%l%11p%%
 au BufNewFile,BufRead * set iminsert=0
 "タブ幅をリセット
 au BufNewFile,BufRead * set tabstop=4 shiftwidth=4
+
 " タブをタブとして扱う(スペースに展開しない)
 set noexpandtab
 
@@ -174,7 +208,15 @@ noremap <CR> o<ESC>
 "ビジュアルモード時vで行末まで選択
 vnoremap v $h
 
-"vimのtab機能とFuzzyfinderを簡単にマッピング
+
+
+"=============================================================================
+" プラグイン周りの設定
+"=============================================================================
+"
+"
+"""---------------------------------------------- FuzzyFinder.vimの設定
+""vimのtab機能とFuzzyfinderを簡単にマッピング
 "http://d.hatena.ne.jp/mickey24/20090310/1236633777
 set showtabline=2
 
@@ -187,7 +229,7 @@ nnoremap <silent> tk :<C-u>tabclose<CR>
 nnoremap <silent> tn :<C-u>tabnext<CR>
 nnoremap <silent> tp :<C-u>tabprevious<CR>
 
-" FuzzyFinder.vim
+" FuzzyFinder.vimのキーマッピング
 nnoremap <unique> <silent> <space>fb :FufBuffer!<CR>
 nnoremap <unique> <silent> <space>ff :FufFile!<CR>
 nnoremap <unique> <silent> <space>fm :FufMruFile!<CR>
@@ -200,12 +242,14 @@ let g:fuf_mrufile_maxItem = 100
 let g:fuf_enumeratingLimit = 20
 let g:fuf_file_exclude = '\v\.DS_Store|\.git|\.swp|\.svn'
 
-" Nerd_Commenter の基本設定
+
+"""---------------------------------------------- Nerd_Commenter の基本設定
 let NERDSpaceDelims = 1
 nmap ,, <Plug>NERDCommenterToggle
 vmap ,, <Plug>NERDCommenterToggle
 
-""" Unite.vim
+
+"""---------------------------------------------- Unite.vimの設定
 " 起動時にインサートモードで開始
 let g:unite_enable_start_insert = 1
 let g:unite_enable_split_vertically = 1 "縦分割で開く
@@ -238,17 +282,14 @@ function! s:unite_my_settings()
   imap <silent><buffer> <ESC><ESC> <ESC>q
 endfunction
 
-"split時の移動キーマッピング
-map <C-j> <C-W>j<C-w>_
-map <C-k> <C-W>k<C-w>_
-map <C-h> <C-w>h<C-w>_
-map <C-l> <C-w>l<C-w>_
 
-"gundo用マッピング ptyhonが無いので導入できず
+"""---------------------------------------------- gundo用マッピング 
+""ptyhonが無いので導入できず
 "nmap U :<C-u>GundoToggle<CR>
 
-"textmanip.vim用の設定
-"http://vim-users.jp/2011/07/hack223/
+
+"""---------------------------------------------- textmanip.vim用の設定
+""http://vim-users.jp/2011/07/hack223/
 " 選択したテキストの移動
 vmap <C-j> <Plug>(Textmanip.move_selection_down)
 vmap <C-k> <Plug>(Textmanip.move_selection_up)
@@ -259,8 +300,9 @@ vmap <C-l> <Plug>(Textmanip.move_selection_right)
 vmap <M-d> <Plug>(Textmanip.duplicate_selection_v)
 nmap <M-d> <Plug>(Textmanip.duplicate_selection_n)
 
-" neocomplcache
-" http://vim-users.jp/2010/10/hack177/
+
+"""---------------------------------------------- neocomplcacheの設定
+""http://vim-users.jp/2010/10/hack177/
 let g:neocomplcache_enable_at_startup = 1 " 起動時に有効化
 let g:neocomplcache_enable_smart_case = 1 "neocomplcacheのsmart case機能を有効化します。 smart caseは'smartcase'と同様に、大文字が入力されるまで大文字小文字の区別を無視するという機能です。
 let g:neocomplcache_enable_underbar_completion = 1 "これは_区切りの補完を有効化
@@ -270,8 +312,9 @@ inoremap <expr><C-l> neocomplcache#complete_common_string() ""補完候補のな
 inoremap <expr><C-y> neocomplcache#close_popup() "現在選択している候補を確定
 inoremap <expr><C-e> neocomplcache#cancel_popup() "現在選択している候補をキャンセルし、ポップアップを閉じる
 
-""vimshell用設定
-"http://d.hatena.ne.jp/firepig/20101205/1291524527
+
+"""---------------------------------------------- vimshell用設定
+""http://d.hatena.ne.jp/firepig/20101205/1291524527
 let $PATH=$VIM.'\bin'.';'.$PATH
 
 " vimshell setting
@@ -284,7 +327,7 @@ nnoremap <silent> vsc :VimShellCreate<CR>
 nnoremap <silent> vp :VimShellPop<CR>
 
 
-""" syntastic 文法チェック
+"""---------------------------------------------- syntastic 文法チェック
 ""http://poozxxx.hatenablog.com/entry/2012/06/21/000914
 let g:syntastic_mode_map = { 'mode': 'active',
   \ 'active_filetypes': [], 
@@ -293,11 +336,11 @@ let g:syntastic_auto_loc_list = 1
 "let g:syntastic_javascript_checker = 'gjslint'
 
 
-""" YankRing.vimの説明↓
+"""---------------------------------------------- YankRing.vimの説明↓
 ""http://nanasi.jp/articles/vim/yankring_vim.html
 
 
-""" Vim-EasyMotionの設定
+"""---------------------------------------------- Vim-EasyMotionの設定
 ""http://blog.remora.cx/2012/08/vim-easymotion.html
 " ホームポジションに近いキーを使う
 let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
@@ -310,10 +353,10 @@ hi EasyMotionTarget ctermbg=none ctermfg=red
 hi EasyMotionShade  ctermbg=none ctermfg=blue
 
 
-""" vim-indent-guidesの設定
+"""---------------------------------------------- vim-indent-guidesの設定
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#121212 ctermbg=234
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#262626 ctermbg=233
- 
+
 let g:indent_guides_enable_on_vim_startup = 1
 
