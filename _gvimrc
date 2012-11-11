@@ -1,0 +1,18 @@
+" カラースキーマの設定
+colorscheme bespin
+
+"フォントの設定
+set guifont=Consolas:h14:cSHIFTJIS,Meiryoke_Gothic:h14,Meiryoke_Gothic:h14
+"set guifontwide=Meiryoke_Gothic:h14,Meiryoke_Gothic:h14
+
+" 縦幅　デフォルトは24
+set lines=40
+" 横幅　デフォルトは80
+set columns=120
+
+"ツールバーを非表示
+set guioptions-=T
+set guioptions-=m
+
+"ウィンドウを透過
+set transparency=15

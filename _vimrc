@@ -21,7 +21,7 @@ endif
  "NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'} zencodingあるから無効
  NeoBundle 'tpope/vim-rails.git'
  NeoBundle 'mattn/zencoding-vim'
- "NeoBundle 'sjl/gundo.vim' ptyhonないよ
+ NeoBundle 'sjl/gundo.vim'
  NeoBundle 't9md/vim-textmanip'
  NeoBundle 'mattn/hahhah-vim'
  NeoBundle 'thinca/vim-quickrun'
@@ -284,8 +284,9 @@ endfunction
 
 
 """---------------------------------------------- gundo用マッピング 
-""ptyhonが無いので導入できず
-"nmap U :<C-u>GundoToggle<CR>
+nmap U :<C-u>GundoToggle<CR>
+"移動と同時にプレビューをしない
+let g:gundo_auto_preview = 0
 
 
 """---------------------------------------------- textmanip.vim用の設定
