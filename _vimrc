@@ -76,6 +76,10 @@ endif
 " 基本設定
 "=============================================================================
 "
+"シンタックスON＝色付け
+syntax on
+colorscheme bespin
+"
 "新規htmlファイル作成時テンプレートを読み込む
 autocmd BufNewFile *.html 0r ~/.vim/templates/skel.html
 
