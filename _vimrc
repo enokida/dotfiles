@@ -219,8 +219,8 @@ vnoremap v $h
 imap <C-v> <C-R>+
 
 "全て選択
-nmap  <C-a><C-a> ggvG$
-
+nmap <silent> <F5> ggVG
+nmap <silent> <F6> :%y<CR>
 
 
 "=============================================================================
@@ -272,7 +272,7 @@ let g:unite_winwidth = 40 "横幅40で開く
 nnoremap <silent> <C-f> :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 inoremap <silent> <C-f> <ESC>:<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> <C-b> :<C-u>Unite buffer file_mru<CR>
-inoremap <silent> <C-b> <ESC>:<C-u>Unite buffer file_mru<CR>
+"inoremap <silent> <C-b> <ESC>:<C-u>Unite buffer file_mru<CR> zencodingで使いたいので無効
 
 " バッファ一覧
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
@@ -374,3 +374,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#262626 ctermbg=233
 
 let g:indent_guides_enable_on_vim_startup = 1
 
+
+"""---------------------------------------------- zencodingの設定
+"Ctrl+BをC-y,にする
+imap <C-b> <C-y>,
