@@ -1,0 +1,5 @@
+<?php
+
+var_dump(time());
+var_dump(strtotime("2012/6/7 7:55:00"));
+var_dump(strtotime("last Sunday"));
