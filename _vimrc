@@ -162,7 +162,7 @@ au BufNewFile,BufRead * set iminsert=0
 au BufNewFile,BufRead * set tabstop=4 shiftwidth=4
 
 " タブをタブとして扱う(スペースに展開しない)
-set noexpandtab
+"set noexpandtab
 
 ".txtファイルで自動的に日本語入力ON
 au BufNewFile,BufRead *.txt set iminsert=2
@@ -305,14 +305,14 @@ let g:gundo_auto_preview = 0
 """---------------------------------------------- textmanip.vim用の設定
 ""http://vim-users.jp/2011/07/hack223/
 " 選択したテキストの移動
-vmap <C-j> <Plug>(Textmanip.move_selection_down)
-vmap <C-k> <Plug>(Textmanip.move_selection_up)
-vmap <C-h> <Plug>(Textmanip.move_selection_left)
-vmap <C-l> <Plug>(Textmanip.move_selection_right)
+vmap <C-j> <Plug>(textmanip-move-down)
+vmap <C-k> <Plug>(textmanip-move-up)
+vmap <C-h> <Plug>(textmanip-move-left)
+vmap <C-l> <Plug>(textmanip-move-right)
 
 " 行の複製
-vmap <M-d> <Plug>(Textmanip.duplicate_selection_v)
-nmap <M-d> <Plug>(Textmanip.duplicate_selection_n)
+vmap <D-d> <Plug>(textmanip-duplicate-down)
+nmap <D-d> <Plug>(textmanip-duplicate-down)
 
 
 """---------------------------------------------- neocomplcacheの設定
