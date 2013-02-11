@@ -222,6 +222,19 @@ imap <C-v> <C-R>+
 nmap <silent> <F5> ggVG
 nmap <silent> <F6> :%y<CR>
 
+"括弧類を自動補完
+"http://d.hatena.ne.jp/ufssf/20110919/1316416683
+inoremap { {}<LEFT>
+inoremap [ []<LEFT>
+inoremap ( ()<LEFT>
+inoremap " ""<LEFT>
+inoremap ' ''<LEFT>
+vnoremap { "zdi{<C-R>z}<ESC>
+vnoremap [ "zdi[<C-R>z]<ESC>
+vnoremap ( "zdi(<C-R>z)<ESC>
+vnoremap " "zdi"<C-R>z"<ESC>
+vnoremap ' "zdi'<C-R>z'<ESC>
+
 
 "=============================================================================
 " プラグイン周りの設定
@@ -266,7 +279,7 @@ vmap ,, <Plug>NERDCommenterToggle
 " 起動時にインサートモードで開始
 let g:unite_enable_start_insert = 1
 let g:unite_enable_split_vertically = 1 "縦分割で開く
-let g:unite_winwidth = 40 "横幅40で開く
+let g:unite_winwidth = 80 "横幅80で開く
 
 " インサート／ノーマルどちらからでも呼び出せるようにキーマップ
 nnoremap <silent> <C-f> :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
@@ -294,6 +307,12 @@ function! s:unite_my_settings()
   nmap <silent><buffer> <ESC><ESC> q
   imap <silent><buffer> <ESC><ESC> <ESC>q
 endfunction
+" ウィンドウを分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+" ウィンドウを縦に分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
 
 
 """---------------------------------------------- gundo用マッピング 
